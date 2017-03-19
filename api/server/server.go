@@ -10,17 +10,20 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// HTTPServer it is a api gateway server
 type HTTPServer struct {
 	router   *mux.Router
 	config   configuration.Config
 	notifier *event.Notifier
 }
 
+// NewHTTPServer it creates a new one
 func NewHTTPServer(router *mux.Router, config configuration.Config, notifier *event.Notifier) *HTTPServer {
 
 	return &HTTPServer{router, config, notifier}
 }
 
+// Listen it's starting a listening
 func (s *HTTPServer) Listen() {
 
 	for endpoint, destination := range s.config.Get() {
